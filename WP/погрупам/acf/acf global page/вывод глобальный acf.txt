@@ -1,0 +1,36 @@
+Вывод глобальной страницы асf  отдельный раздел (можно было создавать общее переменые выводить где угодно , или же повторять )
+
+1 регистрируем  что бы админке пявилась страничка 
+
+
+add_action('acf/init', function () {
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page(array(
+            'page_title' => 'Global',
+            'menu_title' => 'Global',
+            'menu_slug'  => 'global-settings',
+            'capability' => 'edit_posts',
+            'redirect'   => false
+        ));
+    }
+});
+
+
+2 акф создаю блок по картинке  папке 
+
+
+3  вывожу глобальный масив  видить что нужно вывести 
+			<?
+					$global_settings = get_fields('option'); // 'option' = Options Page
+
+					echo '<pre>';
+					print_r($global_settings); // для отладки
+					echo '</pre>';
+					?>
+
+
+
+4 привер вывода общей страницы переменой 
+
+текст 		<?= esc_html($footer['footer__address']); ?>
+картинка        <img src="<?= esc_url($footer['footer__logo']['url']); ?>" alt="<?= esc_attr($footer['footer__logo']['alt']); ?>">

@@ -1,0 +1,16 @@
+принудительно отключить обязательность поля «Область»  ( что бы покупка прошла дальше )
+
+
+хук отключает принудельно поле область ( его и так нет по дефолту)
+
+add_filter( 'woocommerce_default_address_fields', 'custom_optional_state_field' );
+function custom_optional_state_field( $address_fields ) {
+    if ( isset( $address_fields['state'] ) ) {
+        $address_fields['state']['required'] = false;
+    }
+    return $address_fields;
+}
+
+
+
+

@@ -1,0 +1,24 @@
+1 single-product-reviews.php скидую файл на уровень woocomers ( в не какие папки не помещаю)
+2 скидую шаблон coment.php и натягиваю свой код 
+
+
+
+
+
+если нужно убрать там  можно сделать через стили  что бы сразу коментарии появляилсь а не нажимать на коментарии 
+
+
+/* Скрыть сами вкладки */
+ul.tabs.wc-tabs {
+  display: none !important;
+}
+
+/* Скрыть все панели */
+.woocommerce-Tabs-panel {
+  display: none !important;
+}
+
+/* Показать только панель отзывов */
+.woocommerce-Tabs-panel--reviews {
+  display: block !important;
+}

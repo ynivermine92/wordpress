@@ -1,0 +1,206 @@
+! костомизация добавить коментарии на етой же станице будет
+! редактрировать тоже будет на етой страцице
+
+
+
+
+
+1  fuction php     (передаем аякс сервара файл в файл жс !!!!!! enqueue_comment_edit_script()   етой функци обраить внимание файл потключаеться каким мы будем перадать
+                  бек в жс )
+
+
+// Обработчик Ajax для обновления комментариев
+function update_comment_content() {
+    // Проверка на наличие прав для редактирования комментариев
+    if (!is_user_logged_in()) {
+        wp_send_json_error(array('message' => 'Необходимо авторизоваться.'));
+    }
+
+    $comment_id = isset($_POST['comment_id']) ? intval($_POST['comment_id']) : 0;
+    $new_content = isset($_POST['content']) ? sanitize_textarea_field($_POST['content']) : '';
+
+    if ($comment_id && $new_content) {
+        // Проверка прав пользователя на редактирование комментария
+        $comment = get_comment($comment_id);
+        if ($comment && (get_current_user_id() === $comment->user_id || current_user_can('moderate_comments'))) {
+            // Обновляем комментарий
+            wp_update_comment(array(
+                'comment_ID' => $comment_id,
+                'comment_content' => $new_content
+            ));
+
+            // Отправляем успешный ответ
+            wp_send_json_success();
+        }
+    }
+
+    // Если ошибка, отправляем сообщение об ошибке
+    wp_send_json_error(array('message' => 'Ошибка обновления комментария.'));
+}
+
+// Регистрируем обработчик для Ajax
+add_action('wp_ajax_update_comment_content', 'update_comment_content'); // Для авторизованных пользователей
+add_action('wp_ajax_nopriv_update_comment_content', 'update_comment_content'); // Для неавторизованных пользователей
+
+
+
+function enqueue_comment_edit_script() {
+    wp_enqueue_script('comment-edit', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);       !!!!!!!!!!!!!!!
+
+    // Передаем данные через wp_localize_script в виде массива
+    wp_localize_script('comment-edit', 'commentEditData', array(
+        'ajaxurl' => admin_url('admin-ajax.php') // Указываем правильный параметр в виде массива
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_comment_edit_script');
+
+
+
+
+2 Js  main.js  котрый я переда выделил !!!!!! 
+
+
+	/* добавить редактировать коментраий  на странице и запрос  серверу  */
+	const comments = () => {
+		document.addEventListener('DOMContentLoaded', function () {
+			// Показываем форму редактирования
+			document.querySelectorAll('.comment-edit-link').forEach(function (editLink) {
+				editLink.addEventListener('click', function (e) {
+					e.preventDefault();
+					let commentId = this.getAttribute('data-comment-id');
+					let editForm = document.getElementById('edit-comment-' + commentId);
+					if (editForm) {
+						editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+					}
+				});
+			});
+	
+			// Отправляем обновленный комментарий на сервер
+			document.querySelectorAll('.save-comment').forEach(function (saveButton) {
+				saveButton.addEventListener('click', function () {
+					let commentId = this.getAttribute('data-comment-id');
+					let newContent = document.querySelector('#edit-comment-' + commentId + ' textarea').value;
+	
+					// Проверяем, что контент не пустой
+					if (newContent.trim() === '') {
+						alert('Комментарий не может быть пустым');
+						return;
+					}
+	
+					// Создаем новый запрос AJAX с использованием fetch
+					fetch(commentEditData.ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+						body: 'action=update_comment_content&comment_id=' + commentId + '&content=' + encodeURIComponent(newContent)
+					})
+					.then(response => response.json())
+					.then(data => {
+						if (data.success) {
+							// Обновляем текст комментария на странице
+							let commentContent = document.querySelector('#comment-' + commentId + ' .comment-content');
+							if (commentContent) {
+								commentContent.textContent = newContent;
+							}
+							let editForm = document.getElementById('edit-comment-' + commentId);
+							if (editForm) {
+								editForm.style.display = 'none'; // Скрываем форму редактирования
+							}
+						} else {
+							alert('Ошибка обновления комментария');
+						}
+					})
+					.catch(error => {
+						console.error('Ошибка:', error);
+						alert('Ошибка отправки комментария');
+					});
+				});
+			});
+		});
+	};
+	
+	comments();
+	
+
+
+
+
+
+3 comments.php 
+
+
+
+
+
+        <ul class="comment-list">
+
+
+            <?php
+            // Определяем функцию до использования в wp_list_comments
+            function custom_comments_callback($comment, $args, $depth)
+            {
+                // Получаем данные комментария
+                $tag = 'li';
+                $comment_id = get_comment_ID();
+                $author = get_comment_author();
+                $date = get_comment_date();
+                $time = get_comment_time();
+                $content = get_comment_text();
+                $avatar = get_avatar($comment); // Получаем аватар с размером 60px
+
+                // Начинаем вывод комментария с кастомным классом
+                echo '<' . $tag . ' class="comment" id="comment-' . $comment_id . '">';
+                echo '<div class="vcard bio">' . $avatar . '</div>'; // Добавляем аватар
+                echo '<div class="comment-body">';
+                echo '<h3>' . $author . '</h3>'; // Имя автора
+                echo '<div class="meta">' . $date . ' at ' . $time . '</div>'; // Дата и время
+
+                // Внесите изменения в ваш код с добавлением формы редактирования
+                echo '<span class="edit-link"><a href="#" class="comment-edit-link" data-comment-id="' . $comment_id . '">Редактировать</a></span>';
+                echo '<div class="comment-edit-form" id="edit-comment-' . $comment_id . '" style="display: none;">';
+                echo '<textarea>' . esc_textarea($content) . '</textarea>';
+                echo '<button class="save-comment" data-comment-id="' . $comment_id . '">Сохранить</button>';
+                echo '</div>';
+
+                // Обычный текст комментария
+                echo '<p class="comment-content">' . $content . '</p>'; // Текст комментария
+
+                // Добавляем ссылку для ответа
+                $reply_args = array(
+                    'reply_text' => 'Ответить',
+                    'depth'      => $depth,
+                    'max_depth'  => $args['max_depth']
+                );
+                comment_reply_link($reply_args);
+                echo '</p>';
+
+                echo '</div>'; // Закрываем comment-body
+                echo '</' . $tag . '>'; // Закрываем li
+            }
+
+            // Теперь вызываем wp_list_comments с кастомным колбэком
+            wp_list_comments(
+                array(
+                    'style'      => 'ol',
+                    'short_ping' => true,
+                    'callback'   => 'custom_comments_callback', // Указываем имя функции
+                )
+            );
+            ?>
+        </ul><!-- .comment-list -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

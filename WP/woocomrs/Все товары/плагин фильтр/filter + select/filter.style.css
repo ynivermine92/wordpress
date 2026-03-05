@@ -1,0 +1,234 @@
+.filter {
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px 16px 30px 20px;
+  color: rgb(255, 255, 255);
+}
+
+.filter__wrapper {
+  width: 256px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.filter__item + .filter__item {
+  margin-top: 20px;
+}
+
+.filter__item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+.filter h3 {
+  color: rgb(67, 255, 210);
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.filter .filter-price h3 {
+  margin-bottom: 0px;
+}
+
+.filter form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-transform: uppercase;
+  gap: 10px;
+}
+.form input:focus::placeholder {
+  color: white !important;
+}
+.input:focus::placeholder {
+  color: white !important;
+}
+.filter input,
+.filter span {
+  cursor: pointer;
+}
+
+.filter.active {
+  left: 0;
+  top: 0%;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.price-field {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: #43ffd2;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.slider-track {
+  position: absolute;
+  height: 1px;
+  background: #ccc;
+  border-radius: 5px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.price-title {
+  position: relative;
+  color: #29282d;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+
+.price-field {
+  position: relative;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 1px;
+  background: #43ffd2;
+}
+
+.price-field input[type="range"] {
+  position: absolute;
+}
+
+/* Reset style for input range */
+
+.price-field input[type="range"] {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  outline: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 50%;
+  pointer-events: none;
+  -webkit-appearance: none;
+}
+
+/* Style toddler input range */
+
+.price-field input[type="range"]::-webkit-slider-thumb {
+  /* WebKit/Blink */
+  position: relative;
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  background-color: rgb(67, 255, 210);
+  -webkit-box-shadow: 0px 0px 13px 0px rgba(70, 69, 69, 0.2);
+  box-shadow: 0px 0px 13px 0px rgba(70, 69, 69, 0.2);
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 10;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-top: -1px;
+}
+
+.price-field input[type="range"]::-moz-range-thumb {
+  /* Firefox */
+  position: relative;
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  margin-top: -12px;
+  background: #43ffd2;
+  box-shadow: 0px 0px 13px 0px rgba(70, 69, 69, 0.2);
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 10;
+  width: 15px;
+  height: 15px;
+  margin-top: -1px;
+}
+
+.price-field input[type="range"]::-ms-thumb {
+  /* IE */
+  position: relative;
+  appearance: none;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  margin-top: -5px;
+  background: #43ffd2;
+  box-shadow: 0px 0px 13px 0px rgba(90, 90, 90, 0.2);
+  cursor: pointer;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 100;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-top: -1px;
+}
+
+.price-field input[type="range"]::-webkit-slider-runnable-track {
+  /* WebKit/Blink */
+  width: 188px;
+  height: 1x;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 1px;
+  border-radius: 5px;
+  background: #43ffd2;
+  outline: none;
+  pointer-events: all;
+}
+
+/* filter range  end */
+
+.price__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20px;
+}
+
+.price__box span {
+  cursor: unset;
+}
+
+.price__wrapper {
+  margin-left: 10px;
+  display: flex;
+  gap: 4px;
+}
+
+.price__wrapper + .price__wrapper {
+  position: relative;
+  margin-left: 20px;
+}
+
+.price__wrapper + .price__wrapper::after {
+  content: "-";
+  position: absolute;
+  left: -13px;
+  font-size: 30px;
+  top: -15px;
+}

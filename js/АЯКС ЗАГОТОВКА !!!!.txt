@@ -1,0 +1,24 @@
+  async function CartAjax(productId, type, quantity = 1) {
+  
+    try {
+      const response = await fetch(my_ajax_obj.ajaxurl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        body: `action=ajaxCart&nonce=${my_ajax_obj.nonce}&product_id=${productId}&quantity=${quantity}&type=${type}`
+      });
+
+      const result = await response.json();
+      const { success, data } = result;
+
+      if (success) {
+        updateCartUI(data.cart_items);
+        updateCartCount(data.cart_count);
+        cartPrice(data.cart_total);
+        CheckouttUI(data.cart_items);
+      } else {
+        console.error(`? Ошибка при ${type}`);
+      }
+    } catch (err) {
+      console.error('Ошибка fetch:', err);
+    }
+  }

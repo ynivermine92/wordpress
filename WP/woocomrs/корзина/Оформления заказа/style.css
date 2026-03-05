@@ -1,0 +1,187 @@
+/* оформление заказа */
+
+
+/* Базовые стили из твоего кода */
+.billing-heading {
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: black;
+}
+.billing-form{
+  margin-bottom: 20px;
+}
+.bg-light {
+  background: #f8f9fa !important;
+  padding: 70px;
+  margin-top: 50px;
+}
+
+.input-text {
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  height: 58px !important;
+  padding-left: 20px;
+  padding-right: 15px;
+  background: transparent !important;
+  color: black;
+  font-size: 20px;
+  border-radius: 0px;
+  box-shadow: none !important;
+}
+
+.select2-selection__rendered {
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  height: 58px !important;
+  padding-left: 20px;
+  padding-right: 15px;
+  background: #f8f9fa !important;
+  color: black;
+  font-size: 20px;
+  border-radius: 0px;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.select2-container .select2-selection {
+  border: transparent;
+}
+
+.select2-search__field {
+  display: none;
+}
+
+#order_review {
+  display: flex !important;
+  gap: 50px !important;
+  margin: 50px 0;
+}
+
+.woocommerce table.shop_table {
+  margin: 0;
+  border: transparent;
+  height: 50px;
+}
+
+.shop_table .bg-light {
+  padding: 10px !important;
+}
+
+.select2-container {
+  width: 50%;
+}
+
+.checkout__box-wrapper {
+  display: flex;
+  gap: 50px;
+}
+
+.checkout__box {
+  width: 100%;
+}
+
+.woocommerce form .form-row-first,
+.woocommerce-page form .form-row-first {
+  width: 100% !important;
+  float: unset !important;
+}
+
+.checkout__nput-apartment {
+  display: none !important;
+}
+
+.woocommerce-page form .form-row-last {
+  width: 100%;
+}
+
+.woocommerce form .form-row {
+  margin-top: 20px;
+}
+
+.woocommerce table.shop_table td {
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  border-top: unset !important;
+}
+
+.order-total.order-total__last {
+  font-size: 20px;
+}
+
+.order-total.order-total__last bdi {
+  color: black !important;
+}
+
+.woocommerce-info {
+  display: none;
+}
+
+.ftco-section .woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.ftco-section .woocommerce #payment #place_order:hover,
+.woocommerce-page #payment #place_order:hover {
+  background-color: #333;
+}
+
+/* --- Адаптив --- */
+@media (max-width: 991px) {
+  #order_review {
+    flex-direction: column !important;
+    gap: 30px !important;
+  }
+
+  .checkout__box-wrapper {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .select2-container {
+    width: 100% !important;
+  }
+
+  .bg-light {
+    padding: 30px 20px !important;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .input-text,
+  .select2-selection__rendered {
+    font-size: 16px !important;
+    height: 50px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .ftco-section .woocommerce #payment #place_order,
+  .woocommerce-page #payment #place_order {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  .checkout__box-wrapper {
+    gap: 15px;
+  }
+
+  .checkout__box {
+    width: 100%;
+  }
+
+  .billing-heading {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+}

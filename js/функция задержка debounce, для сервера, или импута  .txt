@@ -1,0 +1,46 @@
+1если идет много запросов не понятных, функция удаляет их оставляет одну , 
+
+2если нужно импут замедлить прослушивание  вызывать что импуте каждых 500 мелесекунд
+ замедлить  запросы етим на серве пока пользователь не ведт все импут потом отправит 
+
+
+ //debounce
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    const debouncedAllCalls = debounce(allCalls, 500)
+
+
+    // Функция для обработки данных ввода по телефону
+    const tellSearch = (dataInput = [], startDateString = '', finalDateString = '') => {
+        const tellSearshImput = document.getElementById('searchCompanies');
+
+         //debounce
+        const debouncedInputHandler = debounce( () => {
+            const searchKey = tellSearshImput.value.trim();
+
+            if (searchKey.length === 0 || searchKey.length >= 3) {
+                debouncedAllCalls(searchKey, 1, startDateString, finalDateString);
+            }
+            if (searchKey !== '') {
+                dataSarsh(searchKey);
+            }
+        }, 300);
+
+        // Добавление обработчика ввода
+        tellSearshImput.removeEventListener('input', debouncedInputHandler); // Удаляем, если уже был добавлен
+        tellSearshImput.addEventListener('input', debouncedInputHandler);
+
+        // Проверка данных и вызов debouncedAllCalls
+        if (dataInput.length === 0 || startDateString || finalDateString) {
+            debouncedAllCalls(tellSearshImput.value.trim(), 1, startDateString, finalDateString);
+        } else {
+            allCalls();
+        }
+    };
+    tellSearch()

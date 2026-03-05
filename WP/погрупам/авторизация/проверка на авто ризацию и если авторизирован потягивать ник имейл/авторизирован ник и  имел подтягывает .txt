@@ -1,0 +1,35 @@
+<?php
+if (is_user_logged_in()) {
+	$current_user = wp_get_current_user();
+	$user_name = $current_user->user_login;
+	$user_email = $current_user->user_email;
+} else {
+	// Если пользователь не авторизован, перенаправляем его на страницу авторизации
+	wp_redirect(wp_login_url());
+	exit;
+}
+?>
+
+
+<section class="ftco-section contact-section bg-light">
+	<div class="container">
+		<div class="row block-9">
+			<div class="col-md-6 order-md-last d-flex">
+				<form action="#" class="bg-white p-5 contact-form">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Your Name" value="<?php echo isset($user_name) ? $user_name : ''; ?>">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Your Email" value="<?php echo isset($user_email) ? $user_email : ''; ?>">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Website" value="Мodist">
+					</div>
+					<div class="form-group">
+						<textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+					</div>
+				</form>
+			</div>

@@ -1,0 +1,14 @@
+   // Добавляем новый элемент в список
+                    const newToastItem = document.createElement('li');
+                    newToastItem.classList.add('call__item');
+                    newToastItem.innerHTML = `
+                        <div class="callIcon">
+                            <i class="material-icons">phone_in_talk</i>
+                        </div>
+                        <div id="callInfo">
+                            <div class="callNumberText">${number}</div>
+                            <div class="callMessage">${response}</div>
+                        </div>
+                    `;
+
+                    call.prepend(newToastItem);

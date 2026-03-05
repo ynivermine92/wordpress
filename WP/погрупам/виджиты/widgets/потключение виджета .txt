@@ -1,0 +1,13 @@
+inc/widgets/widgets-filter.php пример создание виджета 
+
+1 widgets-filter.php  код который нужен для виджета 
+
+2 потключение файла в fuction.php  require get_template_directory() . '/inc/widgets/widget-filter.php';
+
+3 /* регистрация виджета (отображение админке wp)*/
+function modis_init_widgets()
+{
+	register_widget('Modis_Filter_Widget');
+}
+add_action('widgets_init', 'modis_init_widgets');
+

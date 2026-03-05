@@ -1,0 +1,80 @@
+// Функція для показу спливаючого вікна дзвінка
+function showToast(number, response, status) {
+    const call = document.querySelector('.call');
+    setTimeout(() => {
+        const btns = document.querySelectorAll('.btn.green-link.btn-sm');
+        btns.forEach((btn) => {
+            if (!btn.classList.contains('active')) {
+                btn.classList.add('active');
+                btn.addEventListener('click', () => {
+                    // Добавляем новый элемент в список
+                    const newToastItem = document.createElement('li');
+                    newToastItem.classList.add('call__item');
+                    newToastItem.innerHTML = `
+                        <div class="callIcon">
+                            <i class="material-icons">phone_in_talk</i>
+                        </div>
+                        <div id="callInfo">
+                            <div class="callNumberText">${number}</div>
+                            <div class="callMessage">${response}</div>
+                        </div>
+                    `;
+
+                    call.prepend(newToastItem);
+
+                    // Пересчитываем отступы для всех элементов
+                    const allItems = call.querySelectorAll('.call__item');
+                    allItems.forEach((item, index) => {
+                        if (index > 1) {
+                            item.style.bottom = `${130 * index}px`;
+                        }
+
+                    });
+
+                    const callIcon = newToastItem.querySelector('.material-icons');
+                    const callNumberTexts = newToastItem.querySelector('.callNumberText');
+                    const callMessages = newToastItem.querySelector('.callMessage');
+
+               
+                     // Проверка на параметры 
+                    if (!allItems || !callNumberTexts || !callMessages) {
+                        console.error('One or more elements are missing.');
+                        return;
+                    }
+
+                    if (!callNumberTexts.textContent.trim()) {
+                        callNumberTexts.textContent = 'Номер неизвестен';
+                    }
+
+                    if (callMessages.innerHTML.trim() === '') {
+                        callMessages.innerHTML = 'Сообщение отсутствует';
+                        callMessages.style.fontSize = '0.9em';
+                    } else {
+                        callMessages.style.fontSize = '0.9em';
+                    }
+                    // статус 200
+                    if (status !== 200) {
+                        newToastItem.style.backgroundColor = 'lightcoral';
+                        callIcon.innerHTML = 'hide_source';
+                        // анимация
+                        setTimeout(() => {
+                            allItems.forEach((element, index) => { 
+                                setTimeout(() => {
+                                    element.style.transition = 'opacity 2s';
+                                    element.style.opacity = '0.5';
+                                  setTimeout(() => {
+                                        if (call.contains(element)) {
+                                            call.removeChild(element);
+                                        }
+                                    }, 5000);
+                                }, index * 5000);
+                            });
+                        }, 5000);
+                    }
+
+                });
+            }
+        });
+    }, 300);
+
+}

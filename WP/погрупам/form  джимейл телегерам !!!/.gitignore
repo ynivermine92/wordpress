@@ -1,0 +1,17 @@
+# WordPress
+/wp-content/uploads
+/wp-content/upgrade
+/wp-content/cache
+
+# Node.js
+/node_modules
+/package-lock.json
+/yarn.lock
+
+# Environment variables
+/env.php
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,11 @@
+
+btns.forEach((btn) => {
+  if (!btn.classList.contains('active')) {
+    btn.classList.add('active'); // Добавляем класс active
+
+    btn.addEventListener('click', () => {
+      // Логика при клике на кнопку
+         console.log(`${btn.textContent} clicked!`);
+    });
+  }
+});

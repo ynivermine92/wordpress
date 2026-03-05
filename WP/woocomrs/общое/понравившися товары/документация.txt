@@ -1,0 +1,1 @@
+  product-item__link-heart - класса должет быть (на лайке)

@@ -1,0 +1,16 @@
+/* wocommerce */
+.categories__items .price {
+    display: flex;
+    gap: 10px;
+    color: #fff;
+    margin: 20px 0;
+    text-decoration: none !important;
+}
+
+.categories__items ins {
+    text-decoration: none !important;
+}
+
+/* обезательно чере свой класс добавлять потому что у админке общий классы с price и ins
+price - общий класс 
+ins - подечркивание */

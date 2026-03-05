@@ -1,0 +1,82 @@
+
+
+omment_form() глобальный обьект для  оставить коментарий 
+
+
+
+отдельно для етой только странице
+$args = array(
+    'class_form' => 'p-5 bg-light', // Класс для формы
+    'form' => '<div class="form p-5 bg-light">', // Открытие контейнера для формы
+    'comment_field' => '<div class="form-group">
+                          <label for="comment">Ваш комментарий *</label>
+                          <textarea id="comment" name="comment" rows="4" class="form-control" required></textarea>
+                        </div>',
+    'fields' => array(
+        'author' => '<div class="form-group">
+                      <label for="author">Ваше имя *</label>
+                      <input type="text" class="form-control" id="author" name="author" required>
+                      </div>',
+        'email'  => '<div class="form-group">
+                      <label for="email">Ваш email *</label>
+                      <input type="email" class="form-control" id="email" name="email" required>
+                      </div>',
+        'url'    => '<div class="form-group">
+                      <label for="url">Ваш сайт</label>
+                      <input type="url" class="form-control" id="url" name="url">
+                      </div>',
+    ),
+    'submit_button' => '<div class="form-group">
+                          <input type="submit" value="Отправить комментарий" class="btn py-3 px-4 btn-primary">
+                        </div>',
+);
+
+comment_form($args); // Вызываем форму с переданными настройками
+
+
+
+
+
+
+
+
+
+
+для всех коментрай черз функцию будет
+
+
+// Кастомизация формы комментариев написать 
+function custom_comment_form($args)
+{
+	$args['form'] = '<div class="form p-5 bg-light">';
+
+	// Устанавливаем кастомный HTML для поля комментария
+	$args['comment_field'] = '<div class="form-group">
+                                <label for="comment">Ваш комментарий *</label>
+                                <textarea id="comment" name="comment" rows="4" class="form-control" required></textarea>
+                              </div>';
+
+	// Устанавливаем кастомные поля для имени, email и сайта
+	$args['fields'] = array(
+		'author' => '<div class="form-group">
+                        <label for="author">Ваше имя *</label>
+                        <input type="text" class="form-control" id="author" name="author" value="' . esc_attr( isset($_POST['author']) ? $_POST['author'] : '' ) . '" required>
+                     </div>',
+		'email'  => '<div class="form-group">
+                        <label for="email">Ваш email *</label>
+                        <input type="email" class="form-control" id="email" name="email" value="' . esc_attr( isset($_POST['email']) ? $_POST['email'] : '' ) . '" required>
+                     </div>',
+		'url'    => '<div class="form-group">
+                        <label for="url">Ваш сайт</label>
+                        <input type="url" class="form-control" id="url" name="url" value="' . esc_attr( isset($_POST['url']) ? $_POST['url'] : '' ) . '">
+                     </div>',
+	);
+
+	// Устанавливаем кнопку отправки
+	$args['submit_button'] = '<div class="form-group">
+                                <input type="submit" value="Отправить комментарий" class="btn py-3 px-4 btn-primary">
+                              </div>';
+
+	return $args;
+}                          
+add_filter('comment_form_defaults', 'custom_comment_form');

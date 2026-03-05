@@ -1,0 +1,15 @@
+function showToast() {
+    const ul = document.querySelector('.call');
+
+    setInterval(() => {
+        const lastChild = ul.lastElementChild;
+        if (lastChild) {
+            ul.removeChild(lastChild);
+            console.log('Last element removed');
+        } else {
+            console.log('No more elements to remove');
+        }
+    }, 5000); // каждые 5 секунд
+}
+
+showToast();

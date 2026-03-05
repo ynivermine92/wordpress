@@ -1,0 +1,168 @@
+
+
+.woocommerce-order {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 25px 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.woocommerce ul.order_details::after,
+.woocommerce ul.order_details::before {
+  display: none !important;
+}
+
+.woocommerce-order p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.2em;
+}
+
+.woocommerce-notice {
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.woocommerce-notice--error {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+}
+
+.woocommerce-notice--error a.button {
+  margin: 0 10px;
+  background-color: #cc0000;
+  color: white !important;
+  padding: 10px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.woocommerce-notice--error a.button:hover {
+  background-color: #990000;
+}
+
+.woocommerce-order-overview {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  border-top: 1px solid #eee;
+  padding-top: 25px;
+}
+
+.woocommerce-order-overview li {
+  flex: 1 1 45%;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.woocommerce-order-overview li strong {
+  display: block;
+  font-weight: 700;
+  margin-top: 5px;
+  color: #222;
+}
+
+
+
+
+/* Статусы заказа */
+.order-status {
+  padding: 8px 20px;
+  font-weight: 700;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.order-status.processing {
+  background-color: #fff4e5;
+  color: #d9822b;
+  border: 1px solid #d9822b;
+}
+
+.order-status.completed {
+  background-color: #e6f4ea;
+  color: #319c43;
+  border: 1px solid #319c43;
+}
+
+.order-status.failed {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+}
+
+/* Кнопки */
+.button.pay {
+  background-color: #007cba;
+  color: white !important;
+  padding: 10px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin: 0 8px 8px 0;
+}
+
+.button.pay:hover {
+  background-color: #005a8c;
+}
+
+.woocommerce-table__product-name a {
+  color: #000 !important;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.woocommerce-table__product-name a:hover {
+  color: #007cba;
+  text-decoration: underline;
+}
+
+.woocommerce-table__product-name .product-name a:hover {
+  color: #007cba;
+  /* цвет при наведении */
+  text-decoration: underline;
+}
+
+address {
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+address p {
+  margin-top: 10px;
+  /* Отступ сверху между параграфами */
+  margin-bottom: 0;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .woocommerce-order-overview li {
+    flex: 1 1 100%;
+  }
+
+  .woocommerce-order {
+    padding: 20px 15px;
+    margin: 20px 10px;
+  }
+}
