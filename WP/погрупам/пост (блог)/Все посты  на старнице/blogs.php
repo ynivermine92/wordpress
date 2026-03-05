@@ -18,7 +18,7 @@ get_header();
             <div class="row">
                 <div class="col-12">
                     <ul class="blogs__items">
-                        <!-- Создаю кнопку  "Все и присваюеваю  data-category-id=0" -->
+
                         <li class="blogs__item">
                             <button class="blogs__btn active btn-green" id="btn-all" data-category-id="0">
                                 Все
@@ -26,14 +26,13 @@ get_header();
                         </li>
 
                         <?php
-                        /* функция возвращает массив всех категорий блога,фильтр фильтрует 0 false '' []   array_filter(get_categories()) */
+
                         $categories = array_filter(get_categories());
                         foreach ($categories as $category) {
-                            if ($category->slug === 'main') continue; //убираем кнопку slag main
+                            if ($category->slug === 'main') continue;
                         ?>
                             <li class="blogs__item">
                                 <button class="blogs__btn btn-green" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                                    <!-- выводим кнопки по названию -->
                                     <?php echo esc_html($category->name); ?>
                                 </button>
                             </li>
@@ -48,14 +47,14 @@ get_header();
             <?php
             $args_main = [
                 'post_type'      => 'post',
-                'posts_per_page' => 1,                     /* Выводим 1 блог */
-                'category_name'  => 'main',           /* по рубрике (main) */
+                'posts_per_page' => 1,
+                'category_name'  => 'main',
             ];
-            $main_query = new WP_Query($args_main);     /* 1 Передаем  масив параметров запроса args_main   2 WP_Query создает запрос и получает результат  3 $main_query сохраняю результат */
+            $main_query = new WP_Query($args_main);
 
 
-            if ($main_query->have_posts()) {                  /* если есть пост */
-                $main_post_id = $main_query->posts[0]->ID; ?> <!-- получаем ID главного поста (самого нового) -->
+            if ($main_query->have_posts()) {
+                $main_post_id = $main_query->posts[0]->ID; ?>
 
 
                 <div class="row blogstop__inner">
@@ -64,46 +63,46 @@ get_header();
 
                         $main_query->the_post(); ?> <!-- делает глобальные параметры для поста    the_title() the_content() the_permalink()  -->
 
-                        <div class="col-12">
-                            <div class="row blogstop-wrapper">
-                                <div class="col-lg-6 col-12">
-                                    <div class="blogstop__content">
-                                        <div class="blogstop__subtitle"><?php the_title(); ?></div>
-                                        <p class="blogstop__text text"><?php echo get_the_excerpt(); ?></p>
-                                        <a class="blogstop__link btn-green" href="<?php the_permalink(); ?>">Read article</a>
-                                    </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <div class="blogstop__content">
+                                    <div class="blogstop__subtitle"><?php the_title(); ?></div>
+                                    <p class="blogstop__text text"><?php echo get_the_excerpt(); ?></p>
+                                    <a class="blogstop__link btn-green" href="<?php the_permalink(); ?>">Read article</a>
                                 </div>
-                                <div class="col-lg-6 col-12">
-                                    <div class="blogstop__box">
-                                        <?php if (has_post_thumbnail()) :
-                                            the_post_thumbnail('servis', ['class' => 'blogstop__image']);
-                                        else :
-                                            echo 'Миниатюра не установлена';
-                                        endif; ?>
-                                    </div>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <div class="blogstop__box">
+                                    <?php if (has_post_thumbnail()) :
+                                        the_post_thumbnail('servis', ['class' => 'blogstop__image']);
+                                    else :
+                                        echo 'Миниатюра не установлена';
+                                    endif; ?>
                                 </div>
                             </div>
                         </div>
+
                     <? } ?>
                 </div>
             <? } ?>
         </div>
     </div>
 
-    <?php wp_reset_postdata(); ?> <!-- сбрасывает main_query  к дефолтному post-->
+    <?php wp_reset_postdata(); ?>
 
 
 
 
     <!-- Все остальные блоги -->
 
-    <?php $paged = max(1, get_query_var('paged'));   /* получаем номер текуйщей текущей страницы  */
+    <?php $paged = max(1, get_query_var('paged'));
 
     $args_other = [
         'post_type'      => 'post',
-        'posts_per_page' => 2,
-        'post__not_in'   => [$main_post_id],  /* игнорируем блог (main) */
-        'paged'          => $paged,           /* передаем номер текущей страницы */
+        'posts_per_page' => 1,
+        'post__not_in'   => [$main_post_id],
+        'paged'          => $paged,
     ];
 
 
@@ -114,20 +113,20 @@ get_header();
             <div class="row blogs__category">
                 <?php while ($other_query->have_posts()) {
 
-                    /* делает глобальные параметры для поста каждого    the_title() the_content() the_permalink()  */
+
                     $other_query->the_post();
 
-                    /* функция возвращает массив всех категорий блога,фильтра*/
+
                     $categories = get_the_category();
 
                     $cats_names = [];
                     if (!empty($categories)) {
                         foreach ($categories as $cat) {
-                            $cats_names[] = $cat->name;    /* $cat->name  получаем каждого поста рубрику */
+                            $cats_names[] = $cat->name;
                         }
                     }   ?>
 
-                    <div class="col-md-4 col-sm-6 col-12">
+                    <div class="col-lg-4 col-sm-6 col-12">
                         <a class="blogs__inner" href="<?php the_permalink(); ?>">
                             <div class="blogs__image">
                                 <?php
@@ -143,12 +142,10 @@ get_header();
                                     <div class="blogs__wrapper-contnet">
 
 
-                                        <!-- перебераем обьект cats_names с блогам рубрики и выводим -->
                                         <?php foreach ($cats_names as $name) { ?>
                                             <div class="blogs__label"><?php echo esc_html($name); ?></div>
                                         <?php } ?>
                                     </div>
-                                    <!-- вывод месяц день год -->
                                     <span class="blogs__month month"><?php echo get_the_date('M d, Y'); ?></span>
                                 </div>
                                 <div class="blogs__sub-title title"><?php the_title(); ?></div>
@@ -180,7 +177,7 @@ get_header();
     <div class="wrapper">
         <?php
 
-        /* записсываем сколько страниц выводить */
+
         $total_pages = $other_query->max_num_pages;
 
         if ($total_pages > 1) { ?>

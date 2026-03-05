@@ -5,6 +5,7 @@
 
     &__items {
         display: flex;
+        flex-wrap: wrap;
         padding-bottom: 15px;
         gap: 10px;
         text-transform: uppercase;
@@ -12,6 +13,8 @@
 
     &__btn {
         text-transform: capitalize;
+
+        size: clamp(1.4rem, 2vw, 1.6rem) 0;
     }
 
     &__link {
@@ -35,7 +38,7 @@
     &__inner {
         display: flex;
         flex-direction: column;
-        padding: 40px 0;
+        padding: clamp(10px, 3vw, 20px) ;
         transition: all 0.5s;
     }
 
@@ -107,6 +110,12 @@
         stroke: var(--gren);
     }
 
+
+
+    &__category{
+        padding: 60px 0;
+    }
+
     &__content-btn {
         width: 114px;
         display: flex;
@@ -174,6 +183,7 @@
         .title {
             text-align: center;
         }
+        
 
     }
 
@@ -184,15 +194,16 @@
 
 .blogstop {
     background: var(--lightgreen);
-    padding: 40px;
+    padding: 40px 0;
 
 
     &__inner {
         display: flex;
         flex-direction: column;
+        align-content: center;
         gap: 16px 0;
         background: var(--white);
-        padding: 24px;
+        padding: 24px 0;
         border-radius: 24px;
     }
 
@@ -278,10 +289,13 @@
         }
     }
 
-    @media(max-width:576px) {
+    @media(max-width:575px) {
         .btn {
             display: block;
             text-align: center;
+        }
+        .btn-green{
+            padding: 10px 16px;
         }
     }
 }
