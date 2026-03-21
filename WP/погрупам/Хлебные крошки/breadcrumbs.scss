@@ -1,0 +1,43 @@
+.breadcrumbs {
+  font-size: 16px;
+  padding: 20px 0;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+  }
+
+  &__link {
+    font-family: 'Roboto', Arial, sans-serif;
+    text-decoration: none;
+    transition: all 0.5s;
+
+
+    span {
+      margin: 0 2px;
+    }
+
+    .icon-arrow {
+      width: 10px;
+      transition: all 0.5s;
+      height: 10px;
+    }
+
+    &:hover {
+      color: green;
+
+      .icon-arrow {
+        stroke: green;
+        transition: all 0.5s;
+
+
+      }
+
+    }
+  }
+
+
+}

@@ -6,11 +6,11 @@
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
 
     //woocommerce support
-    function modis_add_woocommerce_support()
+    function hortiqa_add_woocommerce_support()
     {
         add_theme_support('woocommerce');
     }
-    add_action('after_setup_theme', 'modis_add_woocommerce_support');
+    add_action('after_setup_theme', 'hortiqa_add_woocommerce_support');
 
 
 
@@ -22,39 +22,42 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     /* _________________ Все товары    файл archive-product_______________________________________________ */
 
 
-    /* кастомный селект */
-
-    remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
 
 
 
-    /*  2 ставляем мой кастомный селект на тяжкой на вокомерс   */
 
 
+    /* 2 ставляем мой кастомный селект на тяжкой на вокомерс  */
+
+    function hortiqa_category_fitlert()
+    {
 ?>
-    <div class="selector">
-        <form class="woocommerce-ordering" method="get"> /* класс оставляем вокомерса */
-            <div class="categories__box">
-
-                <div class="selector__box">
-                    <div class="selector__inner">
-                        <select name="orderby" class="selector__wrapper" onchange="this.form.submit()"> <!-- сюда ставляем свой класс   -->
-                            <option value="menu_order" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'menu_order'); ?>>За популярністю</option>
-                            <option value="popularity" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'popularity'); ?>>По популярності</option>
-                            <option value="rating" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'rating'); ?>>По рейтингу</option>
-                            <option value="date" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'date'); ?>>Новинки</option>
-                            <option value="price" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'price'); ?>>Вид дешевих до дешевих</option>
-                            <option value="price-desc" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'price-desc'); ?>>Вид дорогих до дешевих</option>
-                        </select>
+        <div class="selector">
+            <form class="woocommerce-ordering" method="get">
+                <div class="categories__box">
+                    <div class="selector__box">
+                        <div class="selector__inner">
+                            <select name="orderby" class="selector__wrapper" onchange="this.form.submit()">
+                                <option value="menu_order" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'menu_order'); ?>>За популярністю</option>
+                                <option value="popularity" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'popularity'); ?>>По популярності</option>
+                                <option value="rating" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'rating'); ?>>По рейтингу</option>
+                                <option value="date" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'date'); ?>>Новинки</option>
+                                <option value="price" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'price'); ?>>Вид дешевих до дешевих</option>
+                                <option value="price-desc" <?php selected(isset($_GET['orderby']) ? $_GET['orderby'] : '', 'price-desc'); ?>>Вид дорогих до дешевих</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+                <input type="hidden" name="paged" value="1">
+            </form>
+        </div>
+<?php
+    }
 
-            </div>
-            <input type="hidden" name="paged" value="1">
-        </form>
-    </div>
+    /* кастомный селект */
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30); // убираем стандартный селект
+    add_action('woocommerce_before_shop_loop', 'hortiqa_category_fitlert', 30);
 
-<?
 
 
     /*  кастомизировать ul li не нужно если будет фильтр через аякс 
@@ -65,7 +68,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     function my_custom_products_ul($html)
     {
         // Заменяем стандартный класс на свой
-        $html = str_replace('class="products columns-4"', 'class="categories__items"', $html);
+        $html = str_replace('class="products columns-4"', 'class="categories__items row"', $html);
         return $html;
     }
 
@@ -77,12 +80,20 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
         if ('product' === get_post_type($post_id) && !is_admin()) {
             if (!is_singular('product')) {
                 $classes = array_diff($classes, ['columns-4']);
-                $classes[] = 'categories__item';
+                $classes[] = 'categories__item col-sm-4 col-6';
             }
         }
         return $classes;
     }
 
+
+
+
+    /* меняе размер мениатюры категориях  */
+
+    add_filter('single_product_archive_thumbnail_size', function () {
+        return 'categories';    /* названия миниатюры */
+    });
 
 
 

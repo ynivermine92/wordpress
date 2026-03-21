@@ -1,0 +1,86 @@
+.wrapepr {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wishlist__title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #222;
+}
+
+.wishlist__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.wishlist__item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
+}
+
+.wishlist__item:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.wishlist__item-link {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.wishlist__item-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.wishlist__item-title {
+  margin: 15px 15px 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.wishlist__item-price {
+  margin: 0 15px 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #27ae60;
+  flex-grow: 1;
+}
+
+.wishlist__item-add {
+  margin: 0 15px 20px;
+  padding: 8px 15px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.wishlist__item-remove:hover {
+  background-color: #c0392b;
+}
+
+.wishlist__item-remove {
+  background-color: #e74c3c;
+  padding: 8px 15px;
+  position: absolute;
+  right: 0;
+}
