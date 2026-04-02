@@ -1,111 +1,102 @@
-
-обнзптнльгные
-
-
-1 WooCommerce плагин
-
-2 Query Monitor        Автор: John Blackbourn     для дебага  (отключить когда когда уже сайт будет закончен)
-
-3 Classic Widgets    возращает старый интерефейс виджетов 
+Обезательные WordPress
 
 
 
-5 Плагин для переноса проекта  
-    All-in-One WP Migration
+Дебагер (после продакшена отключить)
+1 Query Monitor
+Автор: John Blackbourn
 
-6 защита 
-  All In One Security или WordFence
-  https://www.youtube.com/watch?v=9nL8_cI-zBM
+2 Плагин для переноса проекта
+All-in-One WP Migration
 
-  7 автофикаторгугл
-  goole authenticator   (  обезательно должен быть доступ    хостингу  потому что  потому не смогу востановить доступ)
+3 защита
+All In One Security или WordFence
+https://www.youtube.com/watch?v=9nL8_cI-zBM
 
+5 ACF
 
-
-8 ACF
-
-seo 
-
-  Cyr-To-Lat  - изменяет кирилицу сайта на латиницу  
-
-  Yoast SEO
-  https://www.youtube.com/watch?v=kB4aNgGQSXo&t=12s
+6 Yoast SEO
+https://www.youtube.com/watch?v=kB4aNgGQSXo&t=12s
 
 
-
- 
-9   1 BeRocket WooCommerce AJAX Products Filter плагин фильтр
-
-    2  фильтр аякс   https://www.youtube.com/watch?v=8_DlqqExk1Y&t=124s
-
-          
-
-
-    
-
-10 оптимайзер катинок 
-
+7 Image(отмизатор)
 Robin image optimizer (сделать легче)
-   https://www.youtube.com/watch?v=O4uM3Ajvpms
-  
+https://www.youtube.com/watch?v=O4uM3Ajvpms
 
-plagin Regenerate Thumbnails  (перегинерация картинок пересоздает картинки)
-   ---------------------------------
+8 Image (перегинератор (удалить на продакшене))
+plagin Regenerate Thumbnails (перегинерация картинок пересоздает картинки)
+
+9 Плагин кэша 
+   LiteSpeed
+
+--------------------------------------------------------
+На усмотрения
+
+seo
+1 Cyr-To-Lat - изменяет кирилицу сайта на латиницу
+seo
 
 
-не обезательные 
-
-Форма обратной связи 
-   Contact Form 7  
-
+защита (дополнительная)
+автофикаторгугл
+2 goole authenticator ( обезательно должен быть доступ хостингу потому что потому не смогу востановить доступ)
 
 
-для кастомизации формы в корзине 
-    checkout forms  (автор  ThemeHigh )  
+Форма обратной связи
+3 Contact Form 7
 
-модалка регистрация авторизация 
-    Login & Register Customizer 
+
+
+модалка регистрация авторизация
+4 Login & Register Customizer
 
 
 мульти язычность
-    Polylang  https://www.youtube.com/watch?v=wYHg6HESsSA&t=386s
+5 Polylang https://www.youtube.com/watch?v=wYHg6HESsSA&t=386s
 
+
+
+--------------------------------------------------------
+Woocomers
+
+
+Фильтр
+1 BeRocket
+
+для кастомизации формы в корзине
+2 checkout forms (автор ThemeHigh )
+
+Покупки
+3 WC Ukraine Shipping - устанавливать на хостинге плагин для покупок
+
+писок жиланий
+4 TI WooCommerce Wishlist
+   https://templateinvaders.com/documentation/ti-woocommerce-wishlist/widgets-and-shortcodes/ документация(шорт коды)
+
+
+
+----------------------------------------------------------------
 
 
 телеграм бот приходило собщение из форммы
-    https://www.youtube.com/watch?v=OYFz7VTohGw
-    
+https://www.youtube.com/watch?v=OYFz7VTohGw
 
+кастомная карта
+https://www.youtube.com/watch?v=t_lzErjCuvU
 
-Доставка 
-    https://www.youtube.com/watch?v=0yJ-btyyhu4  базовая доставка вокомерсе 
+Доставка (базовая доставка вокомерсе)
+https://www.youtube.com/watch?v=0yJ-btyyhu4
 
+новая почта
+https://www.youtube.com/watch?v=VvQGB4YsvkM
 
-    https://www.youtube.com/watch?v=VvQGB4YsvkM новая почта 
-
-    WC Ukraine Shipping  - устанавливать на хостинге  плагин для покупок  
 
 
 Плагин для бронирования
-
-    https://www.youtube.com/watch?v=kDBC7w9iaXA
-
-
-
-
-писок жиланий (платно)
-  TI WooCommerce Wishlist
-
-
-----------------------------------------------------------------
-кастомная карта 
-https://www.youtube.com/watch?v=t_lzErjCuvU
-
-
+https://www.youtube.com/watch?v=kDBC7w9iaXA
 
 
 
 ----------------------------------------------------------------
 
-
- https://www.youtube.com/@AA-Creation91/videos многое по видео можно найти
+https://www.youtube.com/@AA-Creation91/videos многое по видео можно найти

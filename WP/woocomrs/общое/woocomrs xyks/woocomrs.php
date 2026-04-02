@@ -106,14 +106,30 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
     remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
 
-    // ссылка на товар свой класс
+
+    // 1. wishlist (СНАЧАЛА!)
+    /* add_action('woocommerce_before_shop_loop_item', function () {
+        echo '<div class="categories__wishlist product-item__link-heart">';
+        echo do_shortcode('[ti_wishlists_addtowishlist]');
+        echo '</div>';
+    }, 5);
+ */
+    // 2. ссылка на товар
     add_action('woocommerce_before_shop_loop_item', function () {
         echo '<a href="' . get_the_permalink() . '" class="categories__cart">';
     }, 10);
-    //закрывает ссылку
+
+    // 3. закрытие ссылки
     add_action('woocommerce_after_shop_loop_item', function () {
         echo '</a>';
     }, 5);
+
+
+
+
+
+
+
 
 
 

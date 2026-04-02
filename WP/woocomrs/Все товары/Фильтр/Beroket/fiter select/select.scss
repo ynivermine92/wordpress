@@ -1,0 +1,65 @@
+
+
+
+.woocommerce-ordering {
+    position: relative;
+    display: inline-block;
+
+}
+
+.woocommerce-ordering select.orderby {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    box-shadow: none;
+
+    padding: 12px 45px 12px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background: #f8f8f8;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 220px;
+    transition: all 0.2s ease;
+}
+
+/* hover */
+.woocommerce-ordering select.orderby:hover {
+
+}
+
+/* focus */
+.woocommerce-ordering select.orderby:focus {
+    outline: none;
+      border: 1px solid #b3acac;
+ 
+}
+
+/* стрелка */
+.woocommerce-ordering::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+}
+
+.woocommerce-ordering {
+    transition: all 0.5s;
+
+    &.active {
+        &:after {
+            content: "";
+            transform: translateY(-50%) rotate(225deg);
+            transition: all 0.5s;
+        }
+    }
+
+}
