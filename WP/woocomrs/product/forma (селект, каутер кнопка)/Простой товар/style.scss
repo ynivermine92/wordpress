@@ -1,0 +1,64 @@
+.counter {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+    height: 40px;
+    background: #fff;
+
+    .counter__btn {
+        width: 36px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        font-size: 18px;
+        line-height: 1;
+        color: #000;
+
+        transition: 0.2s ease;
+
+        &:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+
+    .counter__input {
+        width: 50px;
+        height: 40px;
+
+        border: none;
+        text-align: center;
+
+        font-size: 14px;
+        font-weight: 500;
+
+        outline: none;
+
+        -moz-appearance: textfield;
+    }
+
+    /* убираем стрелки у input number */
+    .counter__input::-webkit-outer-spin-button,
+    .counter__input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}

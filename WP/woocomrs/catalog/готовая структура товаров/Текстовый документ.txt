@@ -1,0 +1,58 @@
+
+
+
+
+  let selectcategory = document.querySelector('.categories .woocommerce-ordering');
+  if (selectcategory) {
+
+    selectcategory.addEventListener('click', (e) => {
+      if (e.target) {
+        selectcategory.classList.toggle('active');
+      }
+    })
+
+    let selectFilter = document.querySelector('.fillter__content');
+    selectFilter.addEventListener('click', (e) => {
+      if (e.target) {
+        selectFilter.classList.toggle('active');
+      }
+    })
+
+  }
+
+
+
+
+
+  const filterMobuleCatalog = () => {
+
+    const open = document.querySelector('.filter-mobile');
+    const btn = document.querySelector('.fillter-mob__btn');
+    const clouse = document.querySelector('.fillter__clouse');
+    const btnClouse = document.querySelector('.fillter__btn-clouse');
+
+    if (open) {
+
+      btn.addEventListener('click', () => {
+        open.classList.add('active');
+        document.body.classList.add('locked');
+      })
+
+      clouse.addEventListener('click', () => {
+        open.classList.remove('active');
+        document.body.classList.remove('locked');
+      })
+
+      btnClouse.addEventListener('click', () => {
+        open.classList.remove('active');
+        document.body.classList.remove('locked');
+      })
+    }
+
+
+
+
+
+  }
+
+  filterMobuleCatalog();
