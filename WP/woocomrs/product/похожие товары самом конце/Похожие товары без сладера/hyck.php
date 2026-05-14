@@ -1,4 +1,7 @@
-// RELATED (похожие товары)
+<?php 
+
+/* если сладйер не нужин  этот ввывод  карточка такая же самая как каталоге */
+/* 2) */
 add_filter('woocommerce_post_class', 'custom_wc_product_grid_classes', 10, 2);
 
 function custom_wc_product_grid_classes($classes, $product)
@@ -15,7 +18,3 @@ function custom_wc_product_grid_classes($classes, $product)
     return $classes;
 }
 
-
-
-
-<!-- !!!!!Этот хук отвичает  он находиться  продуктах уже -->

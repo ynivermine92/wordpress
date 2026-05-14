@@ -1,31 +1,58 @@
 <?php
 
 /* простой товар */
-remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
-add_action('woocommerce_single_product_summary', 'productSelectBtnCastom', 30);
 
-function productSelectBtnCastom()
+remove_action('woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30);
+add_action('woocommerce_simple_add_to_cart', 'couter_simple', 30);
+
+
+
+function couter_simple()
 {
-    global $product; ?>
+    global $product;
 
-    <form class="cart slider-product__select"
-        action="<?= esc_url($product->add_to_cart_url()); ?>"
-        method="post"
-        enctype="multipart/form-data">
+    if (!$product || !$product->is_type('simple')) return;
+?>
 
-        <button type="submit"
-            name="add-to-cart"
-            value="<?= esc_attr($product->get_id()); ?>"
-            class="slider-product__btn">
-            <?= esc_html($product->single_add_to_cart_text()); ?>
-        </button>
+    <form class="cart" method="post" enctype="multipart/form-data">
 
-        <div class="counter">
-            <button class="counter__btn minus disabled" type="button">-</button>
-            <input class="counter__input" type="number" name="quantity" value="1" min="1">
-            <button class="counter__btn plus" type="button">+</button>
+        <div class="cout__sum">
+            <span class="cout__product-sum cout__simple-sum">0</span>
+            <span class="cout__product-currency">
+                <?php echo get_woocommerce_currency_symbol(); ?>
+            </span>
+        </div>
+
+        <div class="woocommerce-simple-add-to-cart">
+
+            <!-- COUNTER -->
+            <div class="counter">
+                <button type="button" class="counter__btn minus">-</button>
+
+                <input type="number"
+                    class="counter__input qty"
+                    name="quantity"
+                    value="1"
+                    min="1"
+                    step="1">
+
+                <button type="button" class="counter__btn plus">+</button>
+            </div>
+
+            <!-- BUTTON -->
+            <button type="submit"
+                class="single_add_to_cart_button button alt">
+                В корзину
+            </button>
+
+            <!-- REQUIRED -->
+            <input type="hidden"
+                name="add-to-cart"
+                value="<?php echo esc_attr($product->get_id()); ?>">
+
         </div>
 
     </form>
 
-<?php }
+<?php
+}

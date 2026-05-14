@@ -73,7 +73,7 @@ Woocomers
 4 TI WooCommerce Wishlist
    https://templateinvaders.com/documentation/ti-woocommerce-wishlist/widgets-and-shortcodes/ документация(шорт коды)
 
-
+5 Мини корзина          https://www.youtube.com/watch?v=fJn9XI54f8w&t=85s
 
 ----------------------------------------------------------------
 

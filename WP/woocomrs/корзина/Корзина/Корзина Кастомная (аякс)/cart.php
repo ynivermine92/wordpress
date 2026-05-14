@@ -1,6 +1,4 @@
-Корзина общая
-<?
-
+<?php
 function cart()
 {
     // Форсуємо ініціалізацію сесії та корзини
@@ -20,11 +18,11 @@ function cart()
 
 ?>
 
-    <div class="cart">
+    <div class="cart mini-cart">
         <div class="cart__inner">
             <div class="cart__box">
                 <h4 class="cart__title">Ваш кошик</h4>
-                <div class="cart__clouse"><img src="<?= get_template_directory_uri(); ?>/assets/img/cart/clouse.png" alt="" /></div>
+                <div class="cart__clouse">X</div>
             </div>
             <div class="cart__box-wrapper">
 
@@ -33,17 +31,49 @@ function cart()
                         <?php foreach ($items as $cart_item_key => $cart_item) :
                             $product = $cart_item['data'];
                         ?>
-                            <li class="cart__item" data-product-id="<?= esc_attr($product->get_id()); ?>">
+                            <li class="cart__item"
+                                data-cart-key="<?= esc_attr($cart_item_key); ?>"
+                                data-product-id="<?= esc_attr($product->get_id()); ?>"
+                                data-variation-id="<?= esc_attr($cart_item['variation_id'] ?? 0); ?>">
                                 <div class="cart__box">
                                     <img class="cart__image"
                                         src="<?= esc_url(wp_get_attachment_image_url($product->get_image_id(), 'thumbnail')); ?>"
                                         alt="<?= esc_attr($product->get_name()); ?>" />
                                     <div class="cart__wrapper">
                                         <div class="cart__sub-title"><?= esc_html($product->get_name()); ?></div>
-                                        <div class="counter" data-qty="<?= esc_attr($cart_item['quantity']); ?>">
-                                            <button class="counter__btn minus" type="button"></button>
-                                            <input class="counter__input cart-counter__input" type="text" value="<?= esc_attr($cart_item['quantity']); ?>" maxlength="3">
-                                            <button class="counter__btn plus" type="button"></button>
+
+                                        <!-- variation -->
+
+                                        <?php if (!empty($cart_item['variation'])) : ?>
+
+                                            <div class="mini-cart__variations">
+
+                                                <?php foreach ($cart_item['variation'] as $key => $value) : ?>
+
+                                                    <div class="mini-cart__variation">
+
+                                                        <span>
+                                                            <?php echo esc_html(str_replace('attribute_pa_', '', $key)); ?>:
+                                                        </span>
+
+                                                        <span>
+                                                            <?php echo esc_html($value); ?>
+                                                        </span>
+
+                                                    </div>
+
+                                                <?php endforeach; ?>
+
+                                            </div>
+
+                                        <?php endif; ?>
+
+
+
+                                        <div class="mini-cart__counter" data-qty="<?= esc_attr($cart_item['quantity']); ?>">
+                                            <button class="mini-cart__counter-btn minus" type="button">-</button>
+                                            <input class="mini-cart__counter-input" type="text" value="<?= esc_attr($cart_item['quantity']); ?>" maxlength="3">
+                                            <button class="mini-cart__counter-btn plus" type="button">+</button>
                                         </div>
                                     </div>
                                     <div class="cart__wrapper-inner">
