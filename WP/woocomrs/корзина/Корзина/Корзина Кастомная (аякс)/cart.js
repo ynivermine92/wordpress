@@ -172,6 +172,7 @@ function updateCartUI(items) {
 
   let cartItemsContainer = wrapper.querySelector(".cart__items");
   let cartBtn = wrapper.querySelector(".cart__btn");
+  let cartPriceCoin = wrapper.querySelector(".cart__price-coin");
   let emptyMsg = wrapper.querySelector(".cart__empty");
 
 
@@ -356,6 +357,9 @@ function updateCartUI(items) {
   // -----------------------------
   // КНОПКА ОФОРМЛЕНИЯ
   // -----------------------------
+
+
+
   if (!cartBtn) {
     cartBtn = document.createElement("div");
 
@@ -365,11 +369,32 @@ function updateCartUI(items) {
       <div class="cart__price">
         Загальна ціна:
         <span class="cart__price-currency"></span>
-        <span class="cart__price-coin">₴</span>
+        <span class="cart__price-coin">Валюта</span>
       </div>
 
-      <a class="cart__link" href="checkout.html">
-        Оформить заказ
+      <a class="cart__link" href="checkout">
+        Оформити замовлення
+      </a>
+    `;
+
+    wrapper.appendChild(cartBtn);
+  }
+  if (cartBtn && !cartPriceCoin) {
+    cartBtn.remove();
+
+    cartBtn = document.createElement("div");
+
+    cartBtn.className = "cart__btn";
+
+    cartBtn.innerHTML = `
+      <div class="cart__price">
+        Загальна ціна:
+        <span class="cart__price-currency"></span>
+        <span class="cart__price-coin">Валюта</span>
+      </div>
+
+      <a class="cart__link" href="checkout">
+       Оформити замовлення
       </a>
     `;
 
@@ -508,11 +533,18 @@ if (cartWrapper) {
 
 
 
+
+
+
 /* Общая цена в корзине за все товары */
 const cartPrice = (prace) => {
   let cartPrace = document.querySelector(".cart__price-currency");
+  if (!cartPrace) {
+    return;
+  }
   cartPrace.textContent = prace;
 };
+
 
 // === Обновление счётчика корзинны Хедере ===
 function updateCartCount(count) {
