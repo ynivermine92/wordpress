@@ -1,34 +1,48 @@
-Ошибка 403
-
-Функци, убирает баг из nonce, когда юзер очищает куки браузере, браузер кишируется nonce, в жс остается тот же ключ
-на бекенде он обноляется , ключи не совпадают тогда ошибка 403()
-
-я создаю кук моячек site_guard после обновлени, в куке появется site_guard (если юзер удалит куки то он и удалит site_guard) Тогда удаляются все куки
-и жс получить новый ключ nonce и с бекендом совпадет
 
 
 
 
 
+1 Регестрируем fuction.php  апи nonse
+2 получаем в жс апи 
+3 выводим где то функциях бекенде где нужно nonse
 
 
 
-setcookie('site_guard', '1', 0, '/');
+1 fuction.php 
 
-add_action('init', function () {
+add_action('rest_api_init', function () {
 
-// если куки нет → считаем сессию сломанной
-if (!isset($_COOKIE['site_guard'])) {
-
-// чистим куки (только для текущего домена/пути)
-foreach ($_COOKIE as $name => $value) {
-setcookie($name, '', 0, '/');
-unset($_COOKIE[$name]);
-}
-
-wp_logout();
-}
-
-// всегда восстанавливаем маячок
-setcookie('site_guard', '1', 0, '/');
+	register_rest_route('myapp/v1', '/nonce', [
+		'methods' => 'GET',
+		'permission_callback' => '__return_true',
+		'callback' => function () {
+			return [
+				'nonce' => wp_create_nonce('wp_rest')
+			];
+		}
+	]);
 });
+
+
+
+получаем его  в жс (через апи)
+
+2 async function getNonce() {
+    const response = await fetch("/wp-json/myapp/v1/nonce");
+    const data = await response.json();
+    return data.nonce;
+  }
+
+
+
+
+
+
+проверяем на бекенде 
+3 это проверка ключа (на бекенде где нужно проверить )
+check_ajax_referer('wp_rest', 'nonce');
+
+
+
+
